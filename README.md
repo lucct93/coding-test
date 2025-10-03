@@ -9,7 +9,7 @@ A full-stack user profile management app using React and Node.js. Users can crea
 
 ### What You Need
 - [Docker Compose](https://docs.docker.com/compose/install/)
-- Node.js (v14+)
+- Node.js (v20+)
 - npm
 
 ### Getting Started
