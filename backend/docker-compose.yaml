@@ -5,7 +5,8 @@ services:
     container_name: backend
     build: .
     depends_on:
-      - database
+      database:
+        condition: service_healthy
     environment:
       PG_HOST: database
     volumes:
@@ -14,6 +15,12 @@ services:
     command: npm run start
     ports:
       - "3002:3002"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3002/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   database:
     container_name: database
@@ -27,3 +34,8 @@ services:
     volumes:
       - ./sql/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
       - ./sql/insert.sql:/docker-entrypoint-initdb.d/2-insert.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app_user -d datatys_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

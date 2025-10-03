@@ -1,5 +1,8 @@
 {
   "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
   "rules": {
     "consistent-return": [1],
     "strict": [0],

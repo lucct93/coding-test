@@ -11,6 +11,7 @@ CREATE TABLE users (
   country TEXT,
   city TEXT,
   phone_number TEXT,
+  profile_picture TEXT,
   position TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
